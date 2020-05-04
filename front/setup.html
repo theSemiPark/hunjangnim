@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Noto+Sans+KR|Noto+Serif+KR" rel="stylesheet">
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <style>
+      h1 {
+        font-family: 'Nanum Myeongjo', serif;
+        font-size: 25px;
+        margin-top: 30px;
+        margin-left: 30px;
+      }
+      body {
+        position: relative;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 18px;
+      }
+    </style>
+</head>
+<body bgcolor="3cc89c">
+    <h1 style="color:#FFFFFF"><div style="text-align: left; width: 75%; float: left;">설정</div>
+      <div style="text-align: center; width: 25%; float: right;"><a href="./index.html"><img src="check.png" width=30%></a></div></h1>
+
+    <p>
+      <style>
+      #container1{
+        position: relative;
+        top: 60px;
+        left: 3%;
+        background-color: white;
+        width: 94%;
+        height: 4em;
+        border-radius: 5px;
+      }
+      #item {
+        border: 0px;
+      }
+      </style>
+      <body>
+        <div id="container1">
+          <div id='item' style="margin-left: 20px;">
+              <div style="text-align: left; width: 70%; float: left;">
+                <font color='black'>PUSH 알림</font>
+              </div>
+              <div style="text-align: center; width: 30%; float: right;" id ="img_div">
+            <!--    <img src="pushon.png" width=60%> -->
+              </div>
+          </div>
+        </div>
+      </body>
+    </p>
+<script>
+
+    let userID = "whdtjr321"
+    let nowPushState;
+    $(function() {
+      nowPushSet();
+    });
+    function nowPushSet(){
+      $.ajax({
+        url  :'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/push/'+userID,
+        dataType: "json",
+        type: "GET",
+        cache: true,
+        jsonp: true,
+        jsonpCallback: "",
+        success: function(data) {
+
+          if( data.pushSet == "0"){
+
+            $("#img_div").html('<img src = "pushoff.png" onClick="togglePushSet()" width= 60%>');
+            nowPushState = "0";
+          }
+          else{
+            $("#img_div").html('<img src = "pushon.png" onClick="togglePushSet()" width= 60%>');
+            nowPushState = "1";
+          }
+        },
+        error : function(xhr, status, error){
+            alert("잠시 후 다시 시도해주세요.");
+        }
+      });
+    }
+
+    function togglePushSet(){
+
+      let tempState;
+      if (nowPushState == "0")
+        tempState = "1";
+      else
+        tempState = "0";
+
+      $.ajax({
+        url  :'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/push/'+userID,
+        dataType: "json",
+        type: "PUT",
+        cache: true,
+        jsonp: true,
+        jsonpCallback: "",
+        data : {
+          pushSet : tempState
+        },
+        success: function(data) {
+
+          console.log(data)
+          nowPushState = tempState;
+
+          if( nowPushState == "0")
+            $("#img_div").html('<img src = "pushoff.png" onClick="togglePushSet()" width= 60%>');
+          else
+            $("#img_div").html('<img src = "pushon.png"  onClick="togglePushSet()" width= 60%>');
+
+        },
+        error : function(xhr, status, error){
+            alert("잠시 후 다시 시도해주세요.");
+        }
+      });
+
+    }
+
+
+
+</script>
+</body>
+</html>

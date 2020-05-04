@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Noto+Sans+KR|Noto+Serif+KR" rel="stylesheet">
+
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<style>
+
+  h1{
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 25px;
+      color: white;
+      margin-top: 30px;
+      margin-left: 30px;
+      margin-bottom: 25px;
+  }
+    .main_back_color{
+        background-color:#3cc89c;
+    }
+    .button_back_color{
+        /* background-color : #b9ddad; */
+        position: relative;
+        background-color : #b1e9d7;
+        border-radius: 10px 10px 0 0;
+        padding: 0;
+    } /* 누르기 전 색깔; 에메랄드 */
+    .button_back_push_color{
+        position: relative;
+        background-color : #fff;
+        border-radius: 10px 10px 0 0;
+        padding: 0;
+    } /* 눌렀을 때 색깔; 흰색 */
+    .div_back_color{
+        position: relative;
+        left: 2%;
+        width: 96%;
+        padding: 5%;
+        background-color : #fff;
+        border-radius: 0 0 10px 10px;
+    }
+    .facebook_color{
+        position: relative;
+        background-color : #a2b2d3;
+        border-radius: 5px;
+        height: 7em;
+    }
+    .naver_color{
+        position: relative;
+        background-color : #b9ddad;
+        border-radius: 5px;
+        height: 7em;
+    }
+    #notiImg{
+        width : 30%;
+    }
+    .img_size {
+        width : 60%;
+    }
+    .img_center_align {
+        text-align : center;
+    }
+</style>
+<body >
+    <div class="container-fluid main_back_color">
+        <div class="row">
+                <h1><div style="text-align: left; width: 75%; float: left;"><b>떠먹여주는 맞춤법</b></div>
+                <div style="text-align: center; width: 25%; float: right;"><a href="./setup.html"><img src="notification.png" id = "notiImg"></a></div></h1>
+        </div>
+            <!-- Content here -->
+    </div>
+    <div class="container-fluid main_back_color">
+        <style>
+          body{
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 15px;
+          }
+        </style>
+        <div class="row" style="font-family: 'Nanum Myeongjo', serif; font-size: 13px; font-weight: bold;">
+
+            <div style="margin-left: 5.8%;"></div>
+            <div class="col button_back_color" id = "main_div" style="text-align: center;"><div style="margin-top: 10px;">대문</div></div>
+            <div class="col button_back_color" id = "content_div" style="text-align: center;"><div style="margin-top: 10px;">글 모아보기</div></div>
+            <div class="col button_back_color" id = "analysis_div" style="text-align: center;"><div style="margin-top: 10px;">글 분석내역</div></div>
+            <div class="col button_back_color" id = "ranking_div" style="text-align: center;">지난주<br>언어습관</div>
+            <div style="margin-right: 5.8%;"></div>
+        </div>
+
+        <div class="row main_back_color">
+            <div class="col" id ="front_div" style="font-family: 'Noto Sans KR', sans-serif; font-size: 15px;">
+                <div class="div_back_color">
+
+                    <div class ="">
+
+                      <font color = #3cc89c><br><br><br><br> ● </font>SNS 계정 관리<br><br>
+
+                        <div class ="facebook_color">
+                            <div class = 'img_center_align '>
+                                <br><img src="facebook.png" class='img_size'>
+                                <a href="snslogin_fb.html"><font size=4%>
+                            </div>
+                            <div style="text-align:right">
+                                <font color='black'><i>(User ID)</i></font>
+                                <font color="#3b5998"><strong>▶&nbsp&nbsp</strong> </font></a></font>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "" style="margin-bottom: 39%">
+                        <div class ="naver_color " style="margin-top: 7px;">
+                            <div class = 'img_center_align'>
+                                <br><img src="naverblog.png" class='img_size'>
+                                <a href="snslogin_nb.html"><font size=4%>
+                            </div>
+                            <div style="text-align:right">
+                                <font color='black'><i>(User ID)</i></font>
+                                <font color="#2db400"><strong>▶&nbsp&nbsp</strong> </font></a></font>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                </div>
+            </div>
+            <div class="col main_back_color" id="center_div">
+            </div>
+        </div>
+        <div class="row main_back_color">
+            <div class="col">&nbsp</div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const userID = "whdtjr321"
+        const passWD = "whdtjr321"
+        const week = 45;
+
+
+        $(document).ready(function() {
+            get_main();
+            $("#main_div").attr("onclick", "get_main()");
+            $("#content_div").attr("onclick", "get_content()");
+            $("#analysis_div").attr("onclick", "get_analysis()");
+            $("#ranking_div").attr("onclick", "get_ranking()");
+        });
+
+        function get_main(){
+            // alert("main");
+            $("#center_div").hide();
+            $("#front_div").show();
+
+            $('#main_div').removeClass('button_back_color').addClass('button_back_push_color');
+            $('#content_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#analysis_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#ranking_div').removeClass('button_back_push_color').addClass('button_back_color');
+
+
+        }
+
+        function get_content(){
+            $("#front_div").hide();
+            $("#center_div").show();
+            // alert("content");
+
+            $('#content_div').removeClass('button_back_color').addClass('button_back_push_color');
+            $('#main_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#analysis_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#ranking_div').removeClass('button_back_push_color').addClass('button_back_color');
+
+            $.ajax({
+                dataType: "json",
+                contentType:"application/json",
+                cache: true,
+                jsonp: true,
+                type: 'get' ,
+                url: 'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/allcontent/' + userID ,
+                success: function(data) {
+                    let text = '';
+                    text  +='<table class="table div_back_color" id="contentTable"><colgourp><col width=60%><col width=40%></colgourp>';
+                    console.log(data)
+                    for(let i =0; i < data.Count; i++){
+                        text += "<tr>";
+                        text += "<td colspan='2'>";
+                        text += data.Items[i].contentB;
+                        text += "</td>";
+                        text += "</tr>";
+
+                        text += "<tr>";
+                        text += "<td>";
+                        text += "2018.11.21 PM 08:44";
+                        text+= "</td>"
+                        text += "<td>"
+                        if( data.Items[i].domainType == '1')
+                            text += "<img src='facebook.png' width=65%>";
+                        else if (data.Items[i].domainType == '2')
+                            text += "<img src='naverblog.png' width=65%>";
+                        text += "</td>";
+                        text += "</tr>";
+                    }
+                    text += '</table>';
+                    text += '<div>&nbsp</div>'
+
+                    console.log(text);
+                    $("#center_div").html(text);
+
+
+                },
+                error : function(xhr, status, error){
+                    alert("잠시 후 다시 시도해주세요.");
+                }
+            });
+
+        }
+
+        function get_analysis(){
+            $("#front_div").hide();
+            $("#center_div").show();
+
+
+            $('#analysis_div').removeClass('button_back_color').addClass('button_back_push_color');
+            $('#main_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#content_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#ranking_div').removeClass('button_back_push_color').addClass('button_back_color');
+
+
+            // alert("analysis");
+            $.ajax({
+                dataType: "json",
+                contentType:"application/json",
+                cache: true,
+                jsonp: true,
+                type: 'get' ,
+                url: 'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/analysis/' + userID ,
+                success: function(data) {
+                    let text = '';
+                    text += '<table class="table div_back_color" id="contentTable"><colgourp><col width=60%><col width=40%></colgourp>';
+                    console.log(data)
+                    for(let i =0; i < data.Count; i++){
+                        text += "<tr>";
+                        text += "<td colspan='2'>";
+                        text += data.Items[i].contentA;
+                        text += '</br/> -> ';
+                        text += data.Items[i].contentB;
+                        text += "</td></tr>";
+                        text += "<tr><td>2018.11.21 PM 08:44</td><td>";
+                        if( data.Items[i].domainType == '1')
+                            text += "<img src='facebook.png' width=65%>";
+                        else if (data.Items[i].domainType == '2')
+                            text += "<img src='naverblog.png' width=65%>";
+                        text += "</td>";
+                        text += "</tr>";
+                    }
+                    text += '</table>';
+                    text += '<div>&nbsp</div>'
+                    console.log(text);
+                    $("#center_div").html(text);
+
+                },
+                error : function(xhr, status, error){
+                    alert("잠시 후 다시 시도해주세요.");
+                }
+            });
+
+        }
+
+        function get_ranking(){
+            $("#front_div").hide();
+            $("#center_div").show();
+
+            $('#ranking_div').removeClass('button_back_color').addClass('button_back_push_color');
+            $('#main_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#content_div').removeClass('button_back_push_color').addClass('button_back_color');
+            $('#analysis_div').removeClass('button_back_push_color').addClass('button_back_color');
+
+            // alert("ranking");
+            let temp_html   = '';
+            temp_html       += '<div id=ranking_div" class="div_back_color">'
+            temp_html       += '<font color = #3cc89c><br> ● </font>';
+            temp_html       += '비속어 사용 TOP10<br><br><div id="badWord_div" ></div>';
+            temp_html       += '<font color = #3cc89c><br> ● </font>';
+            temp_html       += '틀린 맞춤법 사용 TOP10<br><br><div id="missWord_div" ></div>';
+            temp_html       += '</div><div>&nbsp</div>'
+
+            $("#center_div").html(temp_html);
+
+            get_badWord();
+            get_missWord();
+        }
+
+
+
+function get_badWord(){
+      $.ajax({
+        url  :'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/wordCount/'+userID+'/?type=2&week='+week,
+        dataType: "json",
+        type: "GET",
+        cache: true,
+        jsonp: true,
+        jsonpCallback: "",
+        success: function(data){
+          console.log(data);
+          let text = '<table class="table" id="contentTable"><colgourp><col width=60%><col width=40%></colgourp>';
+          console.log(data)
+          for(let i =0; i < data.Count; i++){
+              text += "<tr>";
+              text += "<td colspan='2'>";
+              text += data.Items[i].word;
+              text += "</td>";
+              text += "<td>";
+              text += data.Items[i].count;
+              text+= "</td>"
+              text += "</tr>";
+          }
+          text += '</table>';
+          console.log(text);
+          $("#badWord_div").html(text);
+        }
+      });
+    };
+
+
+    function get_missWord(){
+      $.ajax({
+        url  :'https://82yssykh7i.execute-api.ap-northeast-2.amazonaws.com/capstone2/wordCount/'+userID+'/?type=1&week='+week,
+        dataType: "json",
+        type: "GET",
+        cache: true,
+        jsonp: true,
+        jsonpCallback: "",
+        success: function(data){
+          console.log(data);
+          let text = '<table class="table " id="contentTable"><colgourp><col width=60%><col width=40%></colgourp>';
+          console.log(data)
+          for(let i =0; i < data.Count; i++){
+              text += "<tr>";
+              text += "<td colspan='2'>";
+              text += data.Items[i].word;
+              text += "</td>";
+              text += "<td>";
+              text += data.Items[i].count;
+              text+= "</td>"
+              text += "</tr>";
+          }
+          text += '</table>';
+          console.log(text);
+          $("#missWord_div").html(text);
+        }
+      });
+    }
+
+    </script>
+</body>
+</html>
